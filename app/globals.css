@@ -1,0 +1,117 @@
+@import url("../styles/theme.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+.cl-internal-b3fm6y {
+  visibility: hidden !important;
+}
+.cl-internal-l1ab9q,
+.cl-internal-1b63r8w,
+.cl-internal-3vf5mz,
+.cl-internal-fqx4fd,
+.cl-internal-of57g {
+  color: rgb(184, 184, 184) !important;
+}
+@media (prefers-color-scheme: dark) {
+  .cl-internal-l1ab9q,
+  .cl-internal-1b63r8w,
+  .cl-internal-3vf5mz,
+  .cl-internal-fqx4fd,
+  .cl-internal-of57g {
+    color: rgb(184, 184, 184) !important;
+  }
+}
+
+@layer utilities {
+  .dark::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+  }
+
+  .dark::-webkit-scrollbar-track {
+    background: #424b5c;
+  }
+
+  .dark::-webkit-scrollbar-thumb {
+    background: rgba(131, 62, 255, 1);
+    border-radius: 100vh;
+    border: 3px solid #3d5278;
+  }
+
+  .dark::-webkit-scrollbar-thumb:hover {
+    background: rgba(121, 52, 176, 1);
+  }
+}
+
+.search-input {
+    background-image: url('../public/icons/search-normal.svg');
+    background-position: 10px center; /* Adjust the position as needed */
+    background-repeat: no-repeat;
+    padding-left: 35px; /* Adjust padding to ensure text doesn't overlap the icon */
+    background-size: 15px 15px;
+}

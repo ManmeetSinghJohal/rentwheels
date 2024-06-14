@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .btn-primary {
+    @apply bg-primary text-white-50 font-plusJakartaSans font-bold text-[16px] leading-normal;
+  }
+
+  .h1-bold {
+    @apply text-[32px] leading-[38.4px] font-bold text-gray-900 font-plusJakartaSans;
+  }
+
+  .h1-semibold {
+    @apply text-[32px] leading-[38.4px] font-semibold text-gray-900 font-plusJakartaSans;
+  }
+
+  .h3-bold {
+    @apply text-[18px] leading-[22.68px] font-extrabold text-gray-900 font-plusJakartaSans;
+  }
+
+  .h3-semibold {
+    @apply text-[18px] leading-[22.68px] font-medium text-gray-900 font-plusJakartaSans;
+  }
+
+  .base-regular {
+    @apply text-[20px] leading-[40px] font-normal text-gray-900 font-plusJakartaSans;
+  }
+
+  .base-medium {
+    @apply text-[20px] leading-[40px] font-medium text-gray-900 font-plusJakartaSans;
+  }
+
+  .base-semibold {
+    @apply text-[20px] leading-[40px] font-semibold text-gray-900 font-plusJakartaSans;
+  }
+
+  .base-bold {
+    @apply text-[20px] leading-[40px] font-bold text-gray-900 font-plusJakartaSans;
+  }
+
+  .paragraph-bold {
+    @apply text-[16px] leading-[20.16px] font-bold text-gray-900 font-plusJakartaSans;
+  }
+
+  .paragraph-semibold {
+    @apply text-[16px] leading-[20.16px] font-semibold text-gray-900 font-plusJakartaSans;
+  }
+
+  .paragraph-medium {
+    @apply text-[16px] leading-[20.16px] font-medium text-gray-900 font-plusJakartaSans;
+  }
+
+  .body-bold {
+    @apply text-[14px] leading-[17.64px] font-bold text-gray-900  font-plusJakartaSans;
+  }
+
+  .body-medium {
+    @apply text-[14px] leading-[17.64px] font-medium text-gray-900 font-plusJakartaSans;
+  }
+
+  .body-regular {
+    @apply text-[14px] leading-[17.64px] font-normal text-gray-900 font-plusJakartaSans;
+  }
+
+  .small-regular {
+    @apply text-[12px] leading-[20.4px] font-normal text-gray-900 font-plusJakartaSans;
+  }
+}
