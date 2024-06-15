@@ -147,9 +147,9 @@ To fix a bug or enhance an existing module, follow these steps:
 
 ### 📩 Bug / Feature Request
 
-If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/username/projectname/issues/new) by including your search query and the expected result.
+If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/ManmeetSinghJohal/rentwheels/issues/new) by including your search query and the expected result.
 
-If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/username/projectname/issues/new). Please include sample queries and their corresponding results.
+If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/ManmeetSinghJohal/rentwheels/issues/new). Please include sample queries and their corresponding results.
 
 ## ✅ To-do
 - [ ] Enable users to save jobs to their favorites list.
@@ -157,21 +157,7 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 - [ ] Provide a simple and intuitive user interface for easy navigation.
 - [ ] Allow users to filter jobs based on job title, location, or company.
 
-## 🔒 ENV file
-Environment variables[^2] can be used for configuration. They must be set before
-`job init` is called.
-- `JOB_API`
-  - Specifies the directory in which the database is stored.
-- This is provided as a list of [globs][glob], separated by OS-specific
-    characters:
-    | OS                  | Separator | Example                 |
-    | ------------------- | --------- | ----------------------- |
-    | Linux / macOS / BSD | `:`       | `$HOME:$HOME/private/*` |
-    | Windows             | `;`       | `$HOME;$HOME/private/*` |
-- By default, this is set to `"$HOME"`.
-
 ## 📜 Credits
-List your collaborators, if any, with links to their GitHub profiles.
 
 I'd like to acknowledge my collaborators, who contributed to the success of this project. Below are links to their GitHub profiles.
 
@@ -179,25 +165,21 @@ Furthermore, I utilized certain third-party assets that require attribution. Fin
 
 If I followed tutorials during development, I'd include the links to those as well.
 
-👩 Jane Doe <br>
-Email: jane.doe@example.com <br>
-GitHub: @janedoe
+👦 Marko Todorovic <br>
+Email: mtodorovicmarko@gmail.com <br>
+GitHub: @Marko026
 
-👦 John Smith <br>
-Email: john.smith@example.com <br>
-GitHub: @johnsmith
+👦 Stephan Yu  <br>
+Email: stephan.yu@gmail.com <br>
+GitHub: @StephanYu
 
-👩 Emily Johnson <br>
-Email: emily.johnson@example.com <br>
-GitHub: @emilyjohnson
-
-👦 Michael Brown  <br>
-Email: michael.brown@example.com <br>
-GitHub: @michaelbrown
+👦 Romain Dussuchal  <br>
+Email: romain-vrb@hotmail.fr <br>
+GitHub: @RomainDussuchal
 
 
 ## 📚 References
-Jonathan Lee, 'Notes on Naive Bayes Classifiers for Spam Filtering'. [Online].
+
 
 ## 📞 Contact Us
 
