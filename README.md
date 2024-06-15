@@ -26,7 +26,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 12. 📋 [License](#license)
 
 ## <a name="demo">🌐 Demo</a>
-Here is a working live demo:  [MJ's Portfolio](https://mj-portfolio-five.vercel.app/) 
+Here is a working live demo:  [RentWheels](https://cohort6-phoenix-car-rent.vercel.app/) 
 
 ## <a name="introduction">🤖 Introduction</a>
 RentWheels - An online booking system designed to meet the needs of any car-renting business. Allows a user to rent cars from a variety of locations and post their own vehicle for rent. User is able to upload photos of their vehicle and accept payments via Stripe.
