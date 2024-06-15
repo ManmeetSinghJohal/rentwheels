@@ -67,7 +67,7 @@ Welcome to my project! Here, I'll provide you with a brief overview of what insp
 
 👉 **Car Collection**: Explore content easily with pagination features.
 
-👉 **Responsive**: Ensures seamless functionality and aesthetics across all devices and many more, including code architecture and reusability
+👉 **Responsive**: Ensures seamless functionality and aesthetics across all devices and many more, including code architecture and reusability.
 
 ## <a name="setup">🛠️ Setup Project</a>
 To get this project up and running in your development environment, follow these step-by-step instructions.
