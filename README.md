@@ -51,6 +51,7 @@ Welcome to my project! Here, I'll provide you with a brief overview of what insp
 - React-Hook form
 - Zod
 - Stripe
+- Uploadthing
 
 ## <a name="features">🔋 Features</a>
 
