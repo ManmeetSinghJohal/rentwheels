@@ -6,16 +6,14 @@ import Filter from "@/components/shared/Filter";
 import CarCard from "@/components/CarCard";
 import { getFilteredCars } from "@/lib/actions/car.action";
 import ShowMoreCars from "@/components/Search/ShowMoreCars";
-import { SearchParamProps } from "@/types";
 
 export const metadata: Metadata = {
   title: "Search Page",
   description: "Search for your next car on RentWheels",
 };
 
-//! When reloading with the page query, there is a hydration error
 
-const Search = async ({ searchParams }: SearchParamProps) => {
+const Search = async ({ searchParams }: { searchParams: { capacity: string; page: string; rentPrice: string; type: string[] } }) => {
   const currentPage = Number(searchParams.page as string) || 1;
 
   const cars = await getFilteredCars({
@@ -34,8 +32,8 @@ const Search = async ({ searchParams }: SearchParamProps) => {
         <SearchInputs searchParams={searchParams} />
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {cars.cars.map((car) => (
-              <CarCard car={car} />
+            {cars.cars.map((car, i) => (
+              <CarCard key={i} car={car} />
             ))}
           </div>
           <div className="mx-auto my-[42px]">
