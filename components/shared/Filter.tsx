@@ -73,21 +73,17 @@ const Filter = ({ searchParams }: any) => {
       <div className="hidden lg:block ">
         <div className="hidden lg:block text-xs font-semibold text-blue-300 mb-7">TYPE</div>
 
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Sports"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Hybrid"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Electric"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Sedan"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Coupe"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Hatchback"} />
+        {["Sports", "Hybrid", "Electric", "Sedan", "Coupe", "Hatchback"].map((type) => (
+          <CheckBoxes key={type} handleChange={handleChange} category={"type"} type={type} />
+        ))}
 
         <div className="mt-14"></div>
 
         <div className="hidden lg:block text-xs  font-semibold text-blue-300 mb-7">CAPACITY</div>
 
-        <CheckBoxes handleChange={handleChange} category={"capacity"} capacity={"2"} />
-        <CheckBoxes handleChange={handleChange} category={"capacity"} capacity={"4"} />
-        <CheckBoxes handleChange={handleChange} category={"capacity"} capacity={"5"} />
-        <CheckBoxes handleChange={handleChange} category={"capacity"} capacity={"8"} />
+        {["2", "4", "5", "8"].map((capacity) => (
+          <CheckBoxes key={capacity} handleChange={handleChange} category={"capacity"} capacity={capacity} />
+        ))}
 
         <div className="mt-14"></div>
 
