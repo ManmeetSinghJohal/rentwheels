@@ -11,14 +11,25 @@ import { SearchParamProps } from "@/types";
 import CheckBoxes from "../Search/CheckBoxes";
 
 const Filter = ({ searchParams }: any) => {
-  const [maxPrice, setMaxPrice] = useState(200);
-  let searchParamsInstance = new URLSearchParams(searchParams);
-
+  const searchParamsInstance = new URLSearchParams(searchParams);
   const router = useRouter();
 
+  const [maxPrice, setMaxPrice] = useState(() => {
+    const price = searchParamsInstance.get("rentPrice");
+    return price ? Number(price) : 400;
+  });
+  const [selectedTypes, setSelectedTypes] = useState(() => {
+    const types = searchParamsInstance.get("type");
+    return types ? types.split(",") : [];
+  });
+  const [selectedCapacities, setSelectedCapacities] = useState(() => {
+    const capacities = searchParamsInstance.get("capacity");
+    return capacities ? capacities.split(",") : [];
+  });
+
   const handleInputChange = (value: string) => {
-    console.log("input value", value)
-  }
+    console.log("input value", value);
+  };
 
   const onValueChange = (value: number[]) => {
     setMaxPrice(value[0]);
@@ -29,7 +40,7 @@ const Filter = ({ searchParams }: any) => {
   }, [maxPrice]);
 
   const handleChange = (key: string, value: string | number) => {
-    let values = searchParamsInstance.get(key) ? searchParamsInstance.get(key)?.split(",") : [];
+    let values = searchParamsInstance.get(key)?.split(",") || [];
 
     const valueAsString = String(value);
 
@@ -42,8 +53,6 @@ const Filter = ({ searchParams }: any) => {
     }
 
     searchParamsInstance.set(key, values?.join(",") || "");
-
-    // Reset page number to 1
     searchParamsInstance.set("page", "1");
 
     searchParams = searchParamsInstance.toString();
@@ -54,7 +63,13 @@ const Filter = ({ searchParams }: any) => {
       value: new URLSearchParams(searchParams).get(key),
     });
 
-    router.push(newUrl, { scroll: false, shallow: true });
+    router.push(newUrl, { scroll: false, shallow: true } as any);
+
+    if (key === "type") {
+      setSelectedTypes(values);
+    } else if (key === "capacity") {
+      setSelectedCapacities(values);
+    }
   };
 
   return (
@@ -74,7 +89,7 @@ const Filter = ({ searchParams }: any) => {
         <div className="hidden lg:block text-xs font-semibold text-blue-300 mb-7">TYPE</div>
 
         {["Sports", "Hybrid", "Electric", "Sedan", "Coupe", "Hatchback"].map((type) => (
-          <CheckBoxes key={type} handleChange={handleChange} category={"type"} type={type} />
+          <CheckBoxes key={type} handleChange={handleChange} category="type" type={type} value={type} isChecked={selectedTypes.includes(type)} />
         ))}
 
         <div className="mt-14"></div>
@@ -82,7 +97,7 @@ const Filter = ({ searchParams }: any) => {
         <div className="hidden lg:block text-xs  font-semibold text-blue-300 mb-7">CAPACITY</div>
 
         {["2", "4", "5", "8"].map((capacity) => (
-          <CheckBoxes key={capacity} handleChange={handleChange} category={"capacity"} capacity={capacity} />
+          <CheckBoxes key={capacity} handleChange={handleChange} category="capacity" capacity={capacity} value={capacity} isChecked={selectedCapacities.includes(capacity)} />
         ))}
 
         <div className="mt-14"></div>
@@ -90,7 +105,7 @@ const Filter = ({ searchParams }: any) => {
         <div className="hidden lg:block text-xs  font-semibold text-blue-300 mb-7">PRICE</div>
 
         <div>
-          <Slider className="w-[246px]" name="slider" defaultValue={[200]} max={200} onValueChange={(value: number[]) => onValueChange(value)} />
+          <Slider className="w-[246px]" name="slider" defaultValue={[maxPrice]} max={400} onValueChange={onValueChange} />
           <div className="mt-3 text-xl font-semibold text-gray-700">Max. ${maxPrice.toFixed(2)}</div>
         </div>
       </div>
