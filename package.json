@@ -30,7 +30,7 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@stripe/stripe-js": "^2.2.2",
     "@uploadthing/react": "^6.0.2",
-    "@vercel/postgres": "^0.5.1",
+    "@vercel/postgres": "^0.9.0",
     "chart.js": "^4.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
