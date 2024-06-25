@@ -5,72 +5,86 @@ import { useRouter } from "next/navigation";
 
 import { Slider } from "../ui/slider";
 import { formUrlQuery } from "@/lib/utils";
-import { SearchParamProps } from "@/types";
 import CheckBoxes from "../Search/CheckBoxes";
 
-const FilterForTheModal = ({ searchParams }: SearchParamProps) => {
-  const [maxPrice, setMaxPrice] = useState(200);
-  let searchParamsInstance = new URLSearchParams(searchParams);
+const FilterForTheModal = ({ searchParams }: any) => {
+const searchParamsInstance = new URLSearchParams(searchParams);
+const router = useRouter();
 
-  const router = useRouter();
+const [maxPrice, setMaxPrice] = useState(() => {
+  const price = searchParamsInstance.get("rentPrice");
+  return price ? Number(price) : 400;
+});
+const [selectedTypes, setSelectedTypes] = useState(() => {
+  const types = searchParamsInstance.get("type");
+  return types ? types.split(",") : [];
+});
+const [selectedCapacities, setSelectedCapacities] = useState(() => {
+  const capacities = searchParamsInstance.get("capacity");
+  return capacities ? capacities.split(",") : [];
+});
 
-  const onValueChange = (value: number[]) => {
-    setMaxPrice(value[0]);
-  };
+const handleInputChange = (value: string) => {
+  console.log("input value", value);
+};
 
-  useEffect(() => {
-    handleChange("rentPrice", maxPrice);
-  }, [maxPrice]);
+const onValueChange = (value: number[]) => {
+  setMaxPrice(value[0]);
+};
 
-  const handleChange = (key: string, value: string | number) => {
-    let values = searchParamsInstance.get(key) ? searchParamsInstance.get(key).split(",") : [];
+useEffect(() => {
+  handleChange("rentPrice", maxPrice);
+}, [maxPrice]);
 
-    const valueAsString = String(value);
+const handleChange = (key: string, value: string | number) => {
+  let values = searchParamsInstance.get(key)?.split(",") || [];
 
-    if (key === "rentPrice" && !values.includes(valueAsString)) {
-      values = [valueAsString];
-    } else if (values.includes(valueAsString)) {
-      values = values.filter((t) => t !== valueAsString);
-    } else {
-      values.push(valueAsString);
-    }
+  const valueAsString = String(value);
 
-    searchParamsInstance.set(key, values.join(","));
+  if (key === "rentPrice" && !values?.includes(valueAsString)) {
+    values = [valueAsString];
+  } else if (values?.includes(valueAsString)) {
+    values = values.filter((t) => t !== valueAsString);
+  } else {
+    values?.push(valueAsString);
+  }
 
-    // Reset page number to 1
-    searchParamsInstance.set("page", "1");
+  searchParamsInstance.set(key, values?.join(",") || "");
+  searchParamsInstance.set("page", "1");
 
-    searchParams = searchParamsInstance.toString();
+  searchParams = searchParamsInstance.toString();
 
-    const newUrl = formUrlQuery({
-      params: searchParams,
-      key: key,
-      value: new URLSearchParams(searchParams).get(key),
-    });
+  const newUrl = formUrlQuery({
+    params: searchParams,
+    key: key,
+    value: new URLSearchParams(searchParams).get(key),
+  });
 
-    router.push(newUrl, { scroll: false });
-  };
+  router.push(newUrl, { scroll: false, shallow: true } as any);
+
+  if (key === "type") {
+    setSelectedTypes(values);
+  } else if (key === "capacity") {
+    setSelectedCapacities(values);
+  }
+};
 
   return (
     <div className="pt-[10px] px-6 bg-white-50 dark:bg-gray-900 border-gray-850">
       <div>
         <div className="text-xs font-semibold text-blue-300 mb-7">TYPE</div>
 
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Sports"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Hybrid"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Electric"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Sedan"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Coupe"} />
-        <CheckBoxes handleChange={handleChange} category={"type"} type={"Hatchback"} />
+        {["Sports", "Hybrid", "Electric", "Sedan", "Coupe", "Hatchback"].map((type) => (
+          <CheckBoxes key={type} handleChange={handleChange} category="type" type={type} value={type} isChecked={selectedTypes.includes(type)} />
+        ))}
 
         <div className="mt-10"></div>
 
         <div className="text-xs  font-semibold text-blue-300 mb-7">CAPACITY</div>
 
-        <CheckBoxes handleChange={handleChange} category={"capacity"} capacity={"2"} />
-        <CheckBoxes handleChange={handleChange} category={"capacity"} capacity={"4"} />
-        <CheckBoxes handleChange={handleChange} category={"capacity"} capacity={"5"} />
-        <CheckBoxes handleChange={handleChange} category={"capacity"} capacity={"8"} />
+        {["2", "4", "5", "8"].map((capacity) => (
+          <CheckBoxes key={capacity} handleChange={handleChange} category="capacity" capacity={capacity} value={capacity} isChecked={selectedCapacities.includes(capacity)} />
+        ))}
 
         <div className="mt-10"></div>
 
