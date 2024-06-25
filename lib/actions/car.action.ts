@@ -1,11 +1,11 @@
 "use server";
 
 import { prisma } from "@/prisma/client";
-import { AddCarParams, CarWithFavorite, CarsWithOwnerResponse, Filters, SearchCarsResponse } from "@/types";
+import { AddCarParams, CarWithFavorite, CarsWithOwnerResponse, SearchCarsResponse } from "@/types";
 import { handleError } from "../utils";
 
 interface Filters {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | undefined };
   perPage?: number;
   page?: number;
 }
@@ -38,6 +38,7 @@ export const getFilteredCars = async (filters: Filters) => {
           break;
       }
     });
+
     // Ensure page is at least 1
     const page = Math.max(1, filters.page ?? 1);
     const perPage = filters.perPage ?? 10;
@@ -55,8 +56,10 @@ export const getFilteredCars = async (filters: Filters) => {
 
     return { cars, totalCarsCount };
   } catch (error) {
-    console.error("Error details:", error.message);
-    throw new Error(`Error getting filtered cars: ${error.message}`);
+    if (error instanceof Error) {
+      console.error("Error details:", error.message);
+      throw new Error(`Error getting filtered cars: ${error.message}`);
+    }
   }
 };
 
