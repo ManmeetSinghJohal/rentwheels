@@ -17,11 +17,11 @@ const Search = async ({ searchParams }: { searchParams: { capacity: string; page
   const currentPage = Number(searchParams.page as string) || 1;
 
   const cars = await getFilteredCars({
-    searchParams,
+    searchParams: searchParams as any,
     perPage: 10,
     page: currentPage,
   });
-
+  if(!cars) return null
   const totalNumberOfPosts = cars.totalCarsCount;
   const totalNumberOfPages = Math.ceil(totalNumberOfPosts / 10);
 
@@ -29,7 +29,7 @@ const Search = async ({ searchParams }: { searchParams: { capacity: string; page
     <div className="max-w-[1440px] lg:grid lg:grid-cols-[1fr_2fr] lg:gap-6">
       <Filter searchParams={searchParams} />
       <div className="lg:pt-6 mt-6">
-        <SearchInputs searchParams={searchParams} />
+        <SearchInputs />
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {cars.cars.map((car, i) => (
@@ -37,7 +37,7 @@ const Search = async ({ searchParams }: { searchParams: { capacity: string; page
             ))}
           </div>
           <div className="mx-auto my-[42px]">
-            <ShowMoreCars searchParams={searchParams} currentPage={currentPage} totalPages={totalNumberOfPages} />
+            <ShowMoreCars currentPage={currentPage} totalPages={totalNumberOfPages} />
           </div>
         </div>
       </div>
