@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 import * as z from "zod";
@@ -14,9 +14,8 @@ import FormLocation from "../form/sharedFields/FormLocation";
 import FormCalendarSearchInputs from "../form/sharedFields/FormCalanderSearchInputs";
 import { SearchParamProps } from "@/types";
 
-const SearchInputs = ({ searchParams }: SearchParamProps) => {
-  let searchParamsInstance = new URLSearchParams(searchParams as any);
-
+const SearchInputs = () => {
+  const searchParams = useSearchParams();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof SearchInputSchema>>({
@@ -30,16 +29,10 @@ const SearchInputs = ({ searchParams }: SearchParamProps) => {
 
   function onSubmit(values: z.infer<typeof SearchInputSchema>) {
     const { location, availableFrom, availableTo } = values;
+    const mySearchParams = new URLSearchParams();
+    mySearchParams.set("location", values.location);
 
-    searchParamsInstance.set("location", values.location);
-
-    searchParams = searchParamsInstance.toString() as any;
-
-    const newUrl = formUrlQuery({
-      params: searchParams,
-    } as any);
-
-    router.push(newUrl, { scroll: false });
+    router.replace(mySearchParams.toString(), { scroll: false });
   }
 
   return (
@@ -60,7 +53,7 @@ const SearchInputs = ({ searchParams }: SearchParamProps) => {
             </div>
           </div>
           <div className="hidden lg:block xl:basis-[5%] xl:pt-[63px]">
-            <Button variant={"ghost"} className={cn(" bg-primary border-none h-[48px] rounded-[10px] w-full text-white-50 text-sm leading-6 font-semibold font-plusJakartaSans lg:h-[56px] xl:w-[60px]")}>
+            <Button disabled variant={"ghost"} className={cn(" bg-primary border-none h-[48px] rounded-[10px] w-full text-white-50 text-sm leading-6 font-semibold font-plusJakartaSans lg:h-[56px] xl:w-[60px]")}>
               <Image src="/icons/search-normal.png" width={14} height={14} alt="Search" className="bg-primary mr-[6px] xl:mr-0" />
               <div className="xl:hidden">Search</div>
             </Button>
@@ -68,7 +61,7 @@ const SearchInputs = ({ searchParams }: SearchParamProps) => {
         </div>
 
         <div className="lg:hidden xl:basis-[5%] xl:pt-[54px] mb-9">
-          <Button variant={"ghost"} className={cn(" bg-primary border-none h-[48px] rounded-[10px] w-full text-white-50 text-sm leading-6 font-semibold font-plusJakartaSans lg:h-[56px] xl:w-[60px]")}>
+          <Button disabled variant={"ghost"} className={cn(" bg-primary border-none h-[48px] rounded-[10px] w-full text-white-50 text-sm leading-6 font-semibold font-plusJakartaSans lg:h-[56px] xl:w-[60px]")}>
             <Image src="/icons/search-normal.png" width={14} height={14} alt="Search" className="bg-primary mr-[6px] xl:mr-0" />
             <div className="xl:hidden">Search</div>
           </Button>
