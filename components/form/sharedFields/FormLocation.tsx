@@ -39,19 +39,19 @@ const FormLocation = ({ form, name, label, labelClassName, hasLabelIcon, placeho
   const locationWatch = form.watch(name);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const fetchPredictions = async () => {
-      const predictions = await searchLocation({ searchText: locationWatch });
-      setPlacePredictions(predictions);
-    };
+  // useEffect(() => {
+  //   const fetchPredictions = async () => {
+  //     const predictions = await searchLocation({ searchText: locationWatch });
+  //     setPlacePredictions(predictions);
+  //   };
 
-    if ((locationWatch && !isClicked) || locationWatch !== location) {
-      setIsActive(true);
-      fetchPredictions();
-    } else {
-      setIsActive(false);
-    }
-  }, [locationWatch]);
+  //   if ((locationWatch && !isClicked) || locationWatch !== location) {
+  //     setIsActive(true);
+  //     fetchPredictions();
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // }, [locationWatch]);
 
   const handleClick = (description: string) => {
     form.setValue(name, description);
