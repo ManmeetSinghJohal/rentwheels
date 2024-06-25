@@ -30,7 +30,7 @@ const Home = async ({ searchParams }: any) => {
   return (
     <div className="space-y-8 pt-6">
       <Featured />
-      <SearchInputs searchParams={searchParams} />
+      <SearchInputs />
       <PopularCars cars={cars} />
       <RecommendedCars cars={cars} />
     </div>
