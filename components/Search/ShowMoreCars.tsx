@@ -1,31 +1,23 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
-import { SearchParamProps } from "@/types";
-import { formUrlQuery } from "@/lib/utils";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 
-const ShowMoreCars = ({ searchParams, currentPage, totalPages }: { searchParams: SearchParamProps; postsPerPage: number; currentPage: number; totalPages: number }) => {
+const ShowMoreCars = ({ currentPage, totalPages }: { currentPage: number; totalPages: number }) => {
+  const searchParams = useSearchParams();
   const router = useRouter();
 
   const handlePageChange = (newPage: number, e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    let searchParamsInstance = new URLSearchParams(searchParams);
-    searchParamsInstance.set("page", newPage.toString());
 
-    searchParams = searchParamsInstance.toString();
-
-    const newUrl = formUrlQuery({
-      params: searchParams,
-    } as any);
-
-    router.push(newUrl, { scroll: false });
+    const pageNumberSearchParams = new URLSearchParams(searchParams);
+    pageNumberSearchParams.set("page", newPage.toString());
+    router.push("?" + pageNumberSearchParams.toString(), { scroll: false });
   };
 
   const getPageNumbers = () => {
-    const pages = [];
+    const pages: (number | string)[] = [];
     const pageLimit = 5;
     const lowerLimit = currentPage - 2;
     const upperLimit = currentPage + 2;
@@ -39,7 +31,10 @@ const ShowMoreCars = ({ searchParams, currentPage, totalPages }: { searchParams:
 
     // Add first page and ellipsis if needed
     if (startPage > 1) {
-      pages.push(1, startPage > 2 ? "..." : null).filter(Boolean);
+      pages.push(1);
+      if (startPage > 2) {
+        pages.push("...");
+      }
     }
 
     // Add all pages from startPage to endPage
@@ -49,10 +44,14 @@ const ShowMoreCars = ({ searchParams, currentPage, totalPages }: { searchParams:
 
     // Add ellipsis and last page if needed
     if (endPage < totalPages) {
-      pages.push(endPage < totalPages - 1 ? "..." : null, totalPages).filter(Boolean);
+      if (endPage < totalPages - 1) {
+        pages.push("...");
+      }
+      pages.push(totalPages);
     }
 
-    return pages;
+    // Filter out any null values
+    return pages.filter(Boolean);
   };
 
   return (
@@ -60,31 +59,23 @@ const ShowMoreCars = ({ searchParams, currentPage, totalPages }: { searchParams:
       {/* {isClient && ( */}
       <Pagination>
         <PaginationContent>
-          {currentPage > 1 && (
-            <PaginationItem>
-              <PaginationPrevious href="#" onClick={(e) => handlePageChange(currentPage - 1, e)} />
-            </PaginationItem>
-          )}
+          {currentPage > 1 && <PaginationPrevious href="#" onClick={(e) => handlePageChange(currentPage - 1, e)} />}
 
           {/* Page Numbers with Ellipses */}
           {getPageNumbers().map((page, index) =>
             page === "..." ? (
-              <PaginationItem>
+              <PaginationItem key={index}>
                 <PaginationEllipsis />
               </PaginationItem>
             ) : (
-              <PaginationLink href="#" onClick={(e) => handlePageChange(page, e)} isActive={page === currentPage}>
+              <PaginationLink key={index} href="#" onClick={(e) => typeof page === "number" && handlePageChange(page, e)} isActive={page === currentPage}>
                 {page}
               </PaginationLink>
             )
           )}
 
           {/* Next Button */}
-          {currentPage < totalPages && (
-            <PaginationItem>
-              <PaginationNext href="#" onClick={(e) => handlePageChange(currentPage + 1, e)} />
-            </PaginationItem>
-          )}
+          {currentPage < totalPages && <PaginationNext href="#" onClick={(e) => handlePageChange(currentPage + 1, e)} />}
         </PaginationContent>
       </Pagination>
       {/* )} */}
