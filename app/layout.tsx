@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
           <body className={`${inter.className} ${plusJakartaSans.className}`}>
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-            <main className="dark:bg-gray-900">
+            <main className="dark:bg-gray-900 select-none">
               <Navbar />
               <div className="max-w-[1440px] mx-auto">
                 <div className="min-h-screen px-6 md:px-0 bg-white-200 dark:bg-gray-900">{children}</div>
