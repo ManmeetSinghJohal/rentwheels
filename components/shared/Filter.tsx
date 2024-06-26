@@ -18,41 +18,58 @@ const Filter = ({ searchParams }: any) => {
     const price = searchParamsInstance.get("rentPrice");
     return price ? Number(price) : 400;
   });
+
   const [selectedTypes, setSelectedTypes] = useState(() => {
     const types = searchParamsInstance.get("type");
     return types ? types.split(",") : [];
   });
+
   const [selectedCapacities, setSelectedCapacities] = useState(() => {
     const capacities = searchParamsInstance.get("capacity");
     return capacities ? capacities.split(",") : [];
   });
 
-  const handleInputChange = (value: string) => {
-    console.log("input value", value);
-  };
+  // const query = searchParamsInstance.get("q");
+  const [search, setSearch] = useState("");
+
+  // const handleInputChange = (value: string) => {
+  //   console.log("input value", value);
+  // };
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+    
+        handleChange("q", search, true)
+        
+    }, 500);
+    return () => clearTimeout(delayDebounceFn);
+  }, [search])
 
   const onValueChange = (value: number[]) => {
     setMaxPrice(value[0]);
   };
 
   useEffect(() => {
-    handleChange("rentPrice", maxPrice);
+    handleChange("rentPrice", maxPrice, true);
   }, [maxPrice]);
 
-  const handleChange = (key: string, value: string | number) => {
+  const handleChange = (key: string, value: string | number, replace=false) => {
     let values = searchParamsInstance.get(key)?.split(",") || [];
 
     const valueAsString = String(value);
 
-    if (key === "rentPrice" && !values?.includes(valueAsString)) {
-      values = [valueAsString];
-    } else if (values?.includes(valueAsString)) {
+  if (values?.includes(valueAsString)) {
       values = values.filter((t) => t !== valueAsString);
     } else {
       values?.push(valueAsString);
     }
 
-    searchParamsInstance.set(key, values?.join(",") || "");
+    if(!replace){
+      searchParamsInstance.set(key, values?.join(",") || "");
+    } else {
+      searchParamsInstance.set(key, value+ "");
+
+    }
     searchParamsInstance.set("page", "1");
 
     searchParams = searchParamsInstance.toString();
@@ -80,7 +97,7 @@ const Filter = ({ searchParams }: any) => {
           type="text"
           placeholder="Search something here"
           className="w-full h-[46px] dark:border-gray-800 dark:bg-gray-850 text-gray-700 font-normal text-xs leading-6 px-[11px] py-4 bg-white-50 rounded-md border border-blue-100 search-input"
-          onChange={(e) => handleInputChange(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <FilterModal searchParams={searchParams} />
       </div>
