@@ -36,18 +36,36 @@ export const getFilteredCars = async (filters: Filters) => {
             in: filters.searchParams.location?.split(","),
           };
           break;
+        case "q":
+          filterObject["title"] = {
+            search: filters.searchParams.q?.toLowerCase(),
+          }
       }
+      console.log("filterObject", filterObject)
     });
 
     // Ensure page is at least 1
     const page = Math.max(1, filters.page ?? 1);
     const perPage = filters.perPage ?? 10;
     // Query to find cars based on the filters
-    const cars = await prisma.car.findMany({
-      where: filterObject,
-      take: perPage,
-      skip: (page - 1) * perPage, // This will now always be a non-negative number
-    });
+    let cars
+    if(!filterObject["title"]){
+        cars = await prisma.car.findMany({
+        where: filterObject,
+        take: perPage,
+        skip: (page - 1) * perPage, // This will now always be a non-negative number
+      });
+    } else {
+        cars = await prisma.car.findMany({
+        where: {
+          title: {
+            search: filterObject.title.search,
+          }
+        },
+        take: perPage,
+        skip: (page - 1) * perPage,
+        });
+    }
 
     // Query to get the total count of cars based on the filters
     const totalCarsCount = await prisma.car.count({
