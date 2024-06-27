@@ -3,10 +3,10 @@ import { prisma } from "./client";
 
 async function main() {
   // Reset the database
-  await prisma.booking.deleteMany();
-  await prisma.favorite.deleteMany();
-  await prisma.car.deleteMany();
-  await prisma.user.deleteMany();
+  // await prisma.booking.deleteMany();
+  // await prisma.favorite.deleteMany();
+  // await prisma.car.deleteMany();
+  // await prisma.user.deleteMany();
 
   // Create three users, one admin and two regular
   const adminUser = await prisma.user.create({
