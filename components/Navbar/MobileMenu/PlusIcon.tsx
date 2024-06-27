@@ -7,13 +7,7 @@ interface PlusIconProps {
 
 const PlusIcon = ({ size, extraClasses }: PlusIconProps) => {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 16 17"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width={size} height={size} viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_7532_37048)">
         <path
           className={extraClasses}
@@ -23,12 +17,7 @@ const PlusIcon = ({ size, extraClasses }: PlusIconProps) => {
       </g>
       <defs>
         <clipPath id="clip0_7532_37048">
-          <rect
-            width="16"
-            height="16"
-            fill="white"
-            transform="translate(0 0.5)"
-          />
+          <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
         </clipPath>
       </defs>
     </svg>

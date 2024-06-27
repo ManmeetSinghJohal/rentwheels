@@ -11,7 +11,7 @@ const AdminTable = ({ data, columns, count }: AdminTableProps) => {
   };
 
   return (
-    <Table className="p-5 dark:text-gray-100 text-gray-700">
+    <Table className="p-5 text-gray-700 dark:text-gray-100">
       <TableHeader>
         <TableRow>
           {columns.map((column, idx) => (

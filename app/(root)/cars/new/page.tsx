@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const NewCar = () => {
   return (
-    <section className="bg-white-50 rounded-[10px] sm:mx-[86px] sm:mt-[36px] sm:mb-[56px]">
+    <section className="rounded-[10px] bg-white-50 sm:mx-[86px] sm:mb-[56px] sm:mt-[36px]">
       <AddCarForm />
     </section>
   );

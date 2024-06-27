@@ -10,21 +10,11 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({
-  theme,
-  children,
-}: {
-  children: React.ReactNode;
-  theme: string;
-}) => {
+export const ThemeProvider = ({ theme, children }: { children: React.ReactNode; theme: string }) => {
   const [mode, setMode] = useState(theme);
 
   const handleThemeChange = () => {
-    if (
-      localStorage.mode === "dark" ||
-      (!("mode" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
+    if (localStorage.mode === "dark" || (!("mode" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
       setMode("dark");
       document.cookie = "theme=dark";
       document.body.classList.add("dark");
@@ -39,11 +29,7 @@ export const ThemeProvider = ({
     handleThemeChange();
   }, [mode]);
 
-  return (
-    <ThemeContext.Provider value={{ mode, setMode }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ mode, setMode }}>{children}</ThemeContext.Provider>;
 };
 
 export const useTheme = () => {

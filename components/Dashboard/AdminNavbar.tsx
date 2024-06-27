@@ -18,8 +18,8 @@ const AdminNavbar = () => {
   }, [pathname]);
 
   return (
-    <div className="w-full p-5 flex items-center justify-between gap-5">
-      <div className="h3-bold text-gray-850 dark:text-gray-300 capitalize">{title}</div>
+    <div className="flex w-full items-center justify-between gap-5 p-5">
+      <div className="h3-bold capitalize text-gray-850 dark:text-gray-300">{title}</div>
     </div>
   );
 };

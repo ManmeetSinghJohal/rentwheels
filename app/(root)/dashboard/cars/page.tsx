@@ -14,12 +14,12 @@ const CarsPage = async ({ searchParams }: any) => {
   const { cars, totalCount } = query ? await searchCars(query) : await getAllCarsWithOwner(page, itemsPerPage);
 
   return (
-    <div className="p-5 mt-5 mx-5 text-gray-700 dark:text-white-200 dark:bg-gray-850 bg-white-50 rounded-lg">
-      <div className="flex p-2 items-center justify-between">
+    <div className="mx-5 mt-5 rounded-lg bg-white-50 p-5 text-gray-700 dark:bg-gray-850 dark:text-white-200">
+      <div className="flex items-center justify-between p-2">
         <AdminSearch placeholder="Search for a car..." />
 
         <Link href="/dashboard/cars/new">
-          <Button className="px-3 py-2 bg-primary text-white rounded-md cursor-pointer">+ Car</Button>
+          <Button className="cursor-pointer rounded-md bg-primary px-3 py-2 text-white-100">+ Car</Button>
         </Link>
       </div>
 

@@ -26,11 +26,11 @@ const carsColumns = [
     header: "Action",
     accessor: (car: CarWithOwner) => (
       <div className="flex items-center justify-between space-x-2">
-        <Link href={`/dashboard/cars/${car.id}`} className="px-2 py-1 cursor-pointer h-10 flex items-center">
+        <Link href={`/dashboard/cars/${car.id}`} className="flex h-10 cursor-pointer items-center px-2 py-1">
           <Eye />
         </Link>
 
-        <Button className="px-2 py-1 cursor-pointer bg-transparent hover:bg-transparent rounded-none">
+        <Button className="cursor-pointer rounded-none bg-transparent px-2 py-1 hover:bg-transparent">
           <Trash2 />
         </Button>
       </div>

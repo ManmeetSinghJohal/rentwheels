@@ -11,13 +11,13 @@ const Sidebar = async () => {
 
   return (
     <div className="sticky top-10">
-      <div className="flex items-center space-x-5 mb-5">
+      <div className="mb-5 flex items-center space-x-5">
         {/* Profile Image */}
         <Image src={profileImg} alt="profile-picture" width={50} height={50} className="rounded-full" />
 
         {/* Profile Info */}
         <div className="flex flex-col">
-          <span className="text-gray-700 dark:text-gray-300 font-medium">{`@${user?.username}`}</span>
+          <span className="font-medium text-gray-700 dark:text-gray-300">{`@${user?.username}`}</span>
           <span className="text-xs text-gray-500 dark:text-gray-400">Admin</span>
         </div>
       </div>
@@ -26,9 +26,9 @@ const Sidebar = async () => {
       <ul className="list-none">
         {menuItems.map((cat) => (
           <li key={cat.id}>
-            <span className="text-gray-500 dark:text-gray-400 font-bold text-sm mb-2 block">{cat.title}</span>
+            <span className="mb-2 block text-sm font-bold text-gray-500 dark:text-gray-400">{cat.title}</span>
             {cat.list.map((item) => (
-              <Link key={item.title} href={item.path} className="flex items-center p-5 space-x-2 text-gray-700 dark:text-gray-300 text-base-medium">
+              <Link key={item.title} href={item.path} className="flex items-center space-x-2 p-5 text-base text-gray-700 dark:text-gray-300">
                 <span>{item.icon}</span>
                 <span>{item.title}</span>
               </Link>

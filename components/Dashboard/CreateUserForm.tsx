@@ -59,7 +59,7 @@ const CreateUserForm = () => {
   const onSubmit = async (data: z.infer<typeof CreateUserSchema>) => {
     try {
       setIsLoading(true);
-      let pictureUrl = file ? await uploadFile(file) : "";
+      const pictureUrl = file ? await uploadFile(file) : "";
 
       const userData = { ...data, picture: pictureUrl };
 
@@ -86,10 +86,10 @@ const CreateUserForm = () => {
           control={form.control}
           name="username"
           render={({ field }) => (
-            <FormItem className="w-1/3 mb-5">
+            <FormItem className="mb-5 w-1/3">
               <FormLabel>Username</FormLabel>
               <FormControl className="dark:bg-gray-700">
-                <Input {...field} className="bg-white-200 text-gray-850 h-[56px] rounded-[7px]" placeholder="Add a username" />
+                <Input {...field} className="h-[56px] rounded-[7px] bg-white-200 text-gray-850" placeholder="Add a username" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -101,10 +101,10 @@ const CreateUserForm = () => {
           control={form.control}
           name="firstName"
           render={({ field }) => (
-            <FormItem className="w-1/3 mb-5">
+            <FormItem className="mb-5 w-1/3">
               <FormLabel>First Name</FormLabel>
               <FormControl className="dark:bg-gray-700">
-                <Input {...field} value={field.value} className="bg-white-200 text-gray-850 h-[56px] rounded-[7px]" placeholder="John" />
+                <Input {...field} value={field.value} className="h-[56px] rounded-[7px] bg-white-200 text-gray-850" placeholder="John" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -116,10 +116,10 @@ const CreateUserForm = () => {
           control={form.control}
           name="lastName"
           render={({ field }) => (
-            <FormItem className="w-1/3 mb-5">
+            <FormItem className="mb-5 w-1/3">
               <FormLabel>Last Name</FormLabel>
               <FormControl className="dark:bg-gray-700">
-                <Input {...field} value={field.value} className="bg-white-200 text-gray-850 h-[56px] rounded-[7px]" placeholder="Doe" />
+                <Input {...field} value={field.value} className="h-[56px] rounded-[7px] bg-white-200 text-gray-850" placeholder="Doe" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -131,10 +131,10 @@ const CreateUserForm = () => {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="w-1/3 mb-5">
+            <FormItem className="mb-5 w-1/3">
               <FormLabel>Email</FormLabel>
               <FormControl className="dark:bg-gray-700">
-                <Input {...field} value={field.value} className="bg-white-200 text-gray-850 h-[56px] rounded-[7px]" placeholder="Add an email" />
+                <Input {...field} value={field.value} className="h-[56px] rounded-[7px] bg-white-200 text-gray-850" placeholder="Add an email" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -146,12 +146,12 @@ const CreateUserForm = () => {
           control={form.control}
           name="picture"
           render={() => (
-            <FormItem className="w-1/3 mb-5">
+            <FormItem className="mb-5 w-1/3">
               <FormLabel htmlFor="picture">Picture</FormLabel>
               <FormControl className="dark:bg-gray-700">
                 <>
                   <Input {...form.register("picture")} type="file" id="picture" accept="image/*" className="hidden" onChange={handleFileChange} />
-                  <label htmlFor="picture" className="bg-gray-100 text-gray-700 h-[56px] dark:bg-gray-700 dark:text-white-50 flex justify-center items-center rounded-[7px] cursor-pointer" aria-label="Upload picture">
+                  <label htmlFor="picture" className="flex h-[56px] cursor-pointer items-center justify-center rounded-[7px] bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-white-50" aria-label="Upload picture">
                     {file?.name || "Upload Picture"}
                   </label>
                 </>
@@ -165,14 +165,14 @@ const CreateUserForm = () => {
           control={form.control}
           name="role"
           render={({ field }) => (
-            <FormItem className="w-1/3 mb-5">
+            <FormItem className="mb-5 w-1/3">
               <FormLabel>Role</FormLabel>
-              <FormControl className="dark:bg-gray-700 border-0 outline-none">
+              <FormControl className="border-0 outline-none dark:bg-gray-700">
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <SelectTrigger className="bg-white-200 text-gray-700 dark:bg-gray-700 h-[56px] rounded-[7px] dark:text-white-50 border-0 outline-none">
+                  <SelectTrigger className="h-[56px] rounded-[7px] border-0 bg-white-200 text-gray-700 outline-none dark:bg-gray-700 dark:text-white-50">
                     <SelectValue placeholder="Select a role" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white-200 z-10 text-gray-700 dark:bg-gray-700 dark:text-white-50 border-0 outline-none">
+                  <SelectContent className="z-10 border-0 bg-white-200 text-gray-700 outline-none dark:bg-gray-700 dark:text-white-50">
                     <SelectItem value="ADMIN">Admin</SelectItem>
                     <SelectItem value="USER">User</SelectItem>
                   </SelectContent>
@@ -183,10 +183,10 @@ const CreateUserForm = () => {
           )}
         />
 
-        <Button type="submit" className="w-1/3 mt-5 p-8 bg-primary text-white-50 font-bold font-plusJakartaSans text-[16px] border-none rounded-lg cursor-pointer">
+        <Button type="submit" className="mt-5 w-1/3 cursor-pointer rounded-lg border-none bg-primary p-8 font-plusJakartaSans text-[16px] font-bold text-white-50">
           {isLoading ? (
             <div className="flex">
-              <Loader2 className="animate-spin mr-2" />
+              <Loader2 className="mr-2 animate-spin" />
               Saving...
             </div>
           ) : (

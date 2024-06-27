@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { useUser } from "@clerk/nextjs";
@@ -80,10 +80,10 @@ const UserProfileDialog = () => {
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="w-[110px] bg-secondary hover:bg-primary text-center text-white-50 text-xs font-bold">Edit Profile</Button>
+          <Button className="w-[110px] bg-secondary text-center text-xs font-bold text-white-50 hover:bg-primary">Edit Profile</Button>
         </DialogTrigger>
 
-        <DialogContent className="sm:max-w-[359px] lg:max-w-[500px] bg-white-50 dark:bg-gray-850 border-none rounded-[10px] px-4 py-10 lg:p-[50px]" isCustomCloseIcon={true}>
+        <DialogContent className="rounded-[10px] border-none bg-white-50 px-4 py-10 dark:bg-gray-850 sm:max-w-[359px] lg:max-w-[500px] lg:p-[50px]" isCustomCloseIcon={true}>
           <form onSubmit={updateUser}>
             <DialogHeader className="mb-[30px] lg:mb-9">
               <DialogTitle className="base-bold dark:text-white-50">Edit Profile</DialogTitle>
@@ -95,34 +95,34 @@ const UserProfileDialog = () => {
               <span className="sr-only">Close</span>
             </DialogClose>
 
-            <div className="flex flex-col gap-[30px] mb-9">
+            <div className="mb-9 flex flex-col gap-[30px]">
               <div className="flex items-center justify-start gap-[18px]">
-                <Image src={imageUrl} alt="profile-picture" width={71} height={71} className="rounded-full w-[71px] h-[71px] lg:w-[86px] lg:h-[86px]" />
-                <Button type="button" className="w-[150px] h-11 bg-white-100 dark:bg-gray-800 rounded-[7px] text-center text-blue-100 text-xs font-semibold" onClick={(e) => handleImageDialogOpen(e)}>
+                <Image src={imageUrl} alt="profile-picture" width={71} height={71} className="h-[71px] w-[71px] rounded-full lg:h-[86px] lg:w-[86px]" />
+                <Button type="button" className="h-11 w-[150px] rounded-[7px] bg-white-100 text-center text-xs font-semibold text-blue-100 dark:bg-gray-800" onClick={(e) => handleImageDialogOpen(e)}>
                   Upload new picture
                 </Button>
               </div>
-              <div className="w-full flex flex-col justify-start items-start gap-3">
-                <Label htmlFor="name" className="body-semibold dark:text-white-50">
+              <div className="flex w-full flex-col items-start justify-start gap-3">
+                <Label htmlFor="name" className="font-semibold dark:text-white-50">
                   Full Name
                 </Label>
-                <Input className="w-full h-[46px] bg-white-200 dark:bg-gray-800 dark:text-white-200 body-bold rounded-md" id="name" value={`${firstName} ${lastName}`} onChange={(e) => setFullName(e.target.value)} />
+                <Input className="body-bold h-[46px] w-full rounded-md bg-white-200 dark:bg-gray-800 dark:text-white-200" id="name" value={`${firstName} ${lastName}`} onChange={(e) => setFullName(e.target.value)} />
               </div>
 
-              <div className="w-full flex flex-col justify-start items-start gap-3">
-                <Label htmlFor="role" className="body-semibold dark:text-white-50">
+              <div className="flex w-full flex-col items-start justify-start gap-3">
+                <Label htmlFor="role" className="font-semibold dark:text-white-50">
                   Username
                 </Label>
 
-                <Input className="w-full h-[46px] bg-white-200 dark:bg-gray-800 dark:text-white-200 body-bold rounded-md" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <Input className="body-bold h-[46px] w-full rounded-md bg-white-200 dark:bg-gray-800 dark:text-white-200" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
               </div>
             </div>
 
             <DialogFooter className="justify-center">
-              <Button type="submit" className="h-14 w-full px-5 bg-primary rounded-[10px] text-white-50">
+              <Button type="submit" className="h-14 w-full rounded-[10px] bg-primary px-5 text-white-50">
                 {isLoading ? (
                   <div className="flex">
-                    <Loader2 className="animate-spin mr-2" />
+                    <Loader2 className="mr-2 animate-spin" />
                     Uploading...
                   </div>
                 ) : (

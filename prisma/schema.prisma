@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -19,56 +20,60 @@ model User {
   bookings    Booking[]
   carsForRent Car[]      @relation("CarsForRent")
   favorites   Favorite[]
+
   @@map("users")
 }
 
 model Car {
-  id            Int        @id @default(autoincrement())
-  title         String
-  type          String
-  rentPrice     Float
-  capacity      Int
-  transmission  String
-  location      String
-  fuelCapacity  Int
-  description   String
-  images        String[]
-  blurDataURL   String[]
-  ownerId       String     @map("owner_clerk_id")
-  owner         User       @relation("CarsForRent", fields: [ownerId], references: [clerkId])
-  rentalStatus  Boolean    @default(true)
-  bookings      Booking[]
-  favorites     Favorite[]
+  id           Int        @id @default(autoincrement())
+  title        String
+  type         String
+  rentPrice    Float
+  capacity     Int
+  transmission String
+  location     String
+  fuelCapacity Int
+  description  String
+  images       String[]
+  blurDataURL  String[]
+  ownerId      String     @map("owner_clerk_id")
+  owner        User       @relation("CarsForRent", fields: [ownerId], references: [clerkId])
+  rentalStatus Boolean    @default(true)
+  bookings     Booking[]
+  favorites    Favorite[]
+
   @@map("cars")
 }
 
 model Booking {
-  id               Int       @id @default(autoincrement())
-  userId           Int
-  carId            Int
-  location         String
-  pickupDate      DateTime
-  dropoffDate     DateTime
-  pickupTime      String
-  dropoffTime     String
-  pickupAddress    String
-  latitude         Float
-  longitude        Float
-  placeId          String
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  user             User      @relation(fields: [userId], references: [id])
-  car              Car       @relation(fields: [carId], references: [id])
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  carId         Int
+  location      String
+  pickupDate    DateTime
+  dropoffDate   DateTime
+  pickupTime    String
+  dropoffTime   String
+  pickupAddress String
+  latitude      Float
+  longitude     Float
+  placeId       String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id])
+  car           Car      @relation(fields: [carId], references: [id])
+
   @@index([userId])
-  @@map("bookings") 
+  @@map("bookings")
 }
 
 model Favorite {
-  id      Int   @id @default(autoincrement())
-  userId  Int
-  carId   Int
-  user    User  @relation(fields: [userId], references: [id])
-  car     Car   @relation(fields: [carId], references: [id])
+  id     Int  @id @default(autoincrement())
+  userId Int
+  carId  Int
+  user   User @relation(fields: [userId], references: [id])
+  car    Car  @relation(fields: [carId], references: [id])
+
   @@unique([userId, carId], name: "userId_carId")
   @@map("favorites")
 }

@@ -59,7 +59,7 @@ const UpdateUserForm = ({ user }: { user: User }) => {
   const onSubmit = async (data: z.infer<typeof UpdateUserSchema>) => {
     try {
       setIsLoading(true);
-      let pictureUrl = file ? await uploadFile(file) : "";
+      const pictureUrl = file ? await uploadFile(file) : "";
 
       const userData = {
         ...data,
@@ -84,7 +84,7 @@ const UpdateUserForm = ({ user }: { user: User }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-8">
         {/* Form fields */}
         <FormField
           control={form.control}
@@ -140,7 +140,7 @@ const UpdateUserForm = ({ user }: { user: User }) => {
               <FormControl className="dark:bg-gray-700">
                 <>
                   <Input {...form.register("picture")} type="file" id="picture" accept="image/*" className="hidden" onChange={handleFileChange} />
-                  <label htmlFor="picture" className="bg-gray-100 text-gray-700 h-[56px] dark:bg-gray-700 dark:text-white-50 flex justify-center items-center rounded-[7px] cursor-pointer" aria-label="Upload picture">
+                  <label htmlFor="picture" className="flex h-[56px] cursor-pointer items-center justify-center rounded-[7px] bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-white-50" aria-label="Upload picture">
                     {file?.name || "Upload Picture"}
                   </label>
                 </>
@@ -157,12 +157,12 @@ const UpdateUserForm = ({ user }: { user: User }) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Role</FormLabel>
-              <FormControl className="dark:bg-gray-700 border-0 outline-none">
+              <FormControl className="border-0 outline-none dark:bg-gray-700">
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <SelectTrigger className="bg-white-200 text-gray-700 dark:bg-gray-700 h-[56px] rounded-[7px] dark:text-white-50 border-0 outline-none">
+                  <SelectTrigger className="h-[56px] rounded-[7px] border-0 bg-white-200 text-gray-700 outline-none dark:bg-gray-700 dark:text-white-50">
                     <SelectValue placeholder="Select a role" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white-200 z-10 text-gray-700 dark:bg-gray-700 dark:text-white-50 border-0 outline-none">
+                  <SelectContent className="z-10 border-0 bg-white-200 text-gray-700 outline-none dark:bg-gray-700 dark:text-white-50">
                     <SelectItem value="ADMIN">Admin</SelectItem>
                     <SelectItem value="USER">User</SelectItem>
                   </SelectContent>
@@ -172,10 +172,10 @@ const UpdateUserForm = ({ user }: { user: User }) => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-1/3 mt-5 p-8 bg-primary text-white-50 font-bold font-plusJakartaSans text-[16px] border-none rounded-lg cursor-pointer">
+        <Button type="submit" className="mt-5 w-1/3 cursor-pointer rounded-lg border-none bg-primary p-8 font-plusJakartaSans text-[16px] font-bold text-white-50">
           {isLoading ? (
             <div className="flex">
-              <Loader2 className="animate-spin mr-2" />
+              <Loader2 className="mr-2 animate-spin" />
               Saving...
             </div>
           ) : (
@@ -188,6 +188,7 @@ const UpdateUserForm = ({ user }: { user: User }) => {
 };
 
 export default UpdateUserForm;
-function startUpload(arg0: File[]) {
-  throw new Error("Function not implemented.");
-}
+
+// function startUpload(arg0: File[]) {
+//   throw new Error("Function not implemented.");
+// }

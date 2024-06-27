@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 import { Search } from "lucide-react";
@@ -17,6 +17,7 @@ const AdminSearch = ({ placeholder }: AdminSearchParams) => {
   const router = useRouter();
   const pathname = usePathname();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSearchQuery = useCallback(
     debounce((query) => {
       const params = new URLSearchParams(searchParams);
@@ -38,9 +39,9 @@ const AdminSearch = ({ placeholder }: AdminSearchParams) => {
   };
 
   return (
-    <div className="flex items-center space-x-2 bg-transparent p-2 rounded-lg w-max">
+    <div className="flex w-max items-center space-x-2 rounded-lg bg-transparent p-2">
       <Search aria-label="Search Icon" />
-      <Input type="text" aria-label="Search" placeholder={placeholder} className="bg-transparent border-none dark:text-white-200 outline-none h-auto text-gray-900" value={searchTerm} onChange={handleSearchChange} />
+      <Input type="text" aria-label="Search" placeholder={placeholder} className="h-auto border-none bg-transparent text-gray-900 outline-none dark:text-white-200" value={searchTerm} onChange={handleSearchChange} />
     </div>
   );
 };

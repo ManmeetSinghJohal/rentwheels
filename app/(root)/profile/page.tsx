@@ -23,8 +23,8 @@ const Profile = async () => {
   }
 
   return (
-    <section className="px-6 py-6 bg-white-200 dark:bg-gray-900">
-      <h1 className="base-bold dark:text-white-50 mb-6 lg:mb-[31px] ">My Profile</h1>
+    <section className="bg-white-200 p-6 dark:bg-gray-900">
+      <h1 className="base-bold mb-6 dark:text-white-50 lg:mb-[31px] ">My Profile</h1>
 
       <div className="flex flex-col items-center">
         <ProfilePanel />
