@@ -4,7 +4,7 @@ import { currentUser } from "@clerk/nextjs";
 import Featured from "@/components/Featured";
 import PopularCars from "@/components/PopularCars";
 import RecommendedCars from "@/components/RecommendedCars";
-import { getAllCars, getAllCarsWithFavorites, getFilteredCars } from "@/lib/actions/car.action";
+import { getAllCars, getAllCarsWithFavorites } from "@/lib/actions/car.action";
 import { CarWithFavorite } from "@/types";
 import SearchInputs from "@/components/shared/SearchInputs";
 

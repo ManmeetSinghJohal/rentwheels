@@ -49,12 +49,12 @@ const Pagination = ({ count, limit = 10 }: PaginationProps) => {
   };
 
   return (
-    <div className="mt-5 p-2 flex justify-between">
+    <div className="mt-5 flex justify-between p-2">
       <Button className={`px-2 py-1 ${!hasPrev && "cursor-not-allowed bg-gray-200 dark:bg-gray-600"} text-white-50`} disabled={!hasPrev} onClick={() => handleChangePage("prev")}>
         <ArrowLeft />
       </Button>
 
-      <div className="px-2 py-1 paragraph-medium flex justify-center items-center text-gray-700 dark:text-gray-100">
+      <div className="paragraph-medium flex items-center justify-center px-2 py-1 text-gray-700 dark:text-gray-100">
         Page {page} of {maxPage}
       </div>
 

@@ -6,7 +6,7 @@ const AdminViewButton = ({ role }: { role: string }) => {
   return (
     role === "ADMIN" && (
       <Link href="/dashboard">
-        <Button className="w-[110px] bg-secondary hover:bg-primary text-center text-white-50 text-xs font-bold">View Admin</Button>
+        <Button className="w-[110px] bg-secondary text-center text-xs font-bold text-white-50 hover:bg-primary">View Admin</Button>
       </Link>
     )
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 type AdminCardProps = {
   item: {
@@ -12,12 +12,12 @@ type AdminCardProps = {
 
 const AdminCard = ({ item }: AdminCardProps) => {
   return (
-    <Card className="flex items-center justify-between dark:border-gray-850 bg-white-50 dark:bg-gray-700 drop-shadow-md p-4 sm:p-6 rounded-lg w-full">
+    <Card className="flex w-full items-center justify-between rounded-lg bg-white-50 p-4 drop-shadow-md dark:border-gray-850 dark:bg-gray-700 sm:p-6">
       <CardHeader className="p-0">
         <CardTitle className="text-2xl font-bold dark:text-gray-100">{item.title === "Revenue" ? `$${item.number.toLocaleString()}` : item.number.toLocaleString()}</CardTitle>
-        <CardDescription className="paragraph-medium dark:text-gray-300 md:base-medium">{item.title}</CardDescription>
+        <CardDescription className="paragraph-medium md:base-medium dark:text-gray-300">{item.title}</CardDescription>
       </CardHeader>
-      <CardContent className="bg-green-200 flex justify-center items-center p-4 rounded-lg text-green-700 text-lg">{<p>{item.change}%</p>}</CardContent>
+      <CardContent className="flex items-center justify-center rounded-lg bg-green-200 p-4 text-lg text-green-700">{<p>{item.change}%</p>}</CardContent>
     </Card>
   );
 };

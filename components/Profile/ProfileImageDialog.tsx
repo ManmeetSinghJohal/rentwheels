@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
 import { redirect, useRouter } from "next/navigation";
 
@@ -123,7 +123,7 @@ const ProfileImageDialog = ({ open, onOpenChange, onDialogClose, hidden = false 
   return (
     <div className={hidden ? "hidden" : ""}>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="sm:max-w-[359px] lg:max-w-[500px] bg-white-50 dark:bg-gray-850 border-none rounded-[10px] px-4 py-10 lg:p-[50px]" isCustomCloseIcon={true}>
+        <DialogContent className="rounded-[10px] border-none bg-white-50 px-4 py-10 dark:bg-gray-850 sm:max-w-[359px] lg:max-w-[500px] lg:p-[50px]" isCustomCloseIcon={true}>
           <form onSubmit={handleSubmit}>
             <DialogHeader className="mb-[37px] lg:mb-12">
               <DialogTitle className="base-bold dark:text-white-50">Update Profile Image</DialogTitle>
@@ -135,24 +135,24 @@ const ProfileImageDialog = ({ open, onOpenChange, onDialogClose, hidden = false 
               <span className="sr-only">Close</span>
             </DialogClose>
 
-            <div className="flex flex-col gap-[30px] mb-6 lg:mb-[34px]">
-              <div className="w-full flex flex-col justify-start items-start gap-3">
-                <Label htmlFor="image" className="body-semibold dark:text-white-50">
+            <div className="mb-6 flex flex-col gap-[30px] lg:mb-[34px]">
+              <div className="flex w-full flex-col items-start justify-start gap-3">
+                <Label htmlFor="image" className="font-bold dark:text-white-50">
                   Upload Image
                 </Label>
 
                 {/* Drop files component here */}
                 <Input {...getInputProps()} type="file" accept="image/*" className="hidden" onChange={(e) => onFileInputChange(e)} ref={fileInputRef} />
-                <div {...getRootProps()} className="w-full border-dashed dark:border-gray-400 rounded-md border-2 h-[183px] flex flex-col gap-4 items-center justify-center cursor-pointer">
+                <div {...getRootProps()} className="flex h-[183px] w-full cursor-pointer flex-col items-center justify-center gap-4 rounded-md border-2 border-dashed dark:border-gray-400">
                   {isUploaded ? (
                     <Image src={imageUrl} alt="Uploaded image" width={150} height={100} className="object-cover" />
                   ) : (
                     <div className="flex flex-col items-center">
                       <Image src="/assets/icons/Upload.svg" alt="upload icon" width={30} height={30} />
-                      <h1 className="font-plusJakartaSans font-medium text-[14px] dark:text-gray-400">
-                        Drag and drop images, or <span className="text-primary font-semibold">Browse</span>
+                      <h1 className="font-plusJakartaSans text-[14px] font-medium dark:text-gray-400">
+                        Drag and drop images, or <span className="font-semibold text-primary">Browse</span>
                       </h1>
-                      <p className="font-plusJakartaSans font-normal text-[12px] text-gray-400 dark:text-white-100">High resolution images (png, jpg, gif)</p>
+                      <p className="font-plusJakartaSans text-[12px] font-normal text-gray-400 dark:text-white-100">High resolution images (png, jpg, gif)</p>
                     </div>
                   )}
                 </div>
@@ -160,10 +160,10 @@ const ProfileImageDialog = ({ open, onOpenChange, onDialogClose, hidden = false 
             </div>
 
             <DialogFooter className="justify-center">
-              <Button type="submit" className="h-14 w-full px-5 bg-primary rounded-[10px] text-white-50">
+              <Button type="submit" className="h-14 w-full rounded-[10px] bg-primary px-5 text-white-50">
                 {isLoading ? (
                   <div className="flex">
-                    <Loader2 className="animate-spin mr-2" />
+                    <Loader2 className="mr-2 animate-spin" />
                     Uploading...
                   </div>
                 ) : (

@@ -51,7 +51,7 @@ function generateExtendedCarObjects(numObjects: number): CarRental[] {
   ];
 
   for (let i = 0; i < numObjects; i++) {
-    const car: CarRental = { 
+    const car: CarRental = {
       title: titles[Math.floor(Math.random() * titles.length)],
       type: types[Math.floor(Math.random() * types.length)],
       rentPrice: parseFloat((Math.random() * (150 - 50) + 50).toFixed(2)),

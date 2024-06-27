@@ -30,7 +30,7 @@ const ProfilePanel = () => {
     };
 
     fetchUserData();
-  }, []);
+  },);
 
   const updateCoverImage = (newCoverImageUrl: string) => {
     setCoverImage(newCoverImageUrl);
@@ -40,30 +40,30 @@ const ProfilePanel = () => {
     return <div>Loading...</div>;
   }
 
-  const { firstName, lastName, username, imageUrl, publicMetadata } = user;
+  const { firstName, lastName, username, imageUrl } = user;
   const fullName = `${firstName} ${lastName}`;
 
   return (
-    <div className="w-full min-w-[327px] h-[301px] relative bg-white-50 dark:bg-gray-850 rounded-[10px] mb-10">
+    <div className="relative mb-10 h-[301px] w-full min-w-[327px] rounded-[10px] bg-white-50 dark:bg-gray-850">
       {/* Profile Image */}
-      <Image src={imageUrl} alt="profile-picture" width={70} height={70} className="z-10 rounded-full left-[13px] top-[115px] lg:left-[31px] lg:top-[119px] absolute w-[70px] h-[70px] lg:w-40 lg:h-40" />
+      <Image src={imageUrl} alt="profile-picture" width={70} height={70} className="absolute left-[13px] top-[115px] z-10 h-[70px] w-[70px] rounded-full lg:left-[31px] lg:top-[119px] lg:h-40 lg:w-40" />
 
       {/* Cover Image */}
-      <div className="flex h-[150px] lg:h-[184px] relative">
-        <Image src={coverImage} alt="cover-picture" width={375} height={150} loading="eager" className="rounded-t-[10px] w-full z-0 h-auto object-cover" priority />
+      <div className="relative flex h-[150px] lg:h-[184px]">
+        <Image src={coverImage} alt="cover-picture" width={375} height={150} loading="eager" className="z-0 h-auto w-full rounded-t-[10px] object-cover" priority />
         <CoverImageDialog onCoverImageUpdated={updateCoverImage} />
       </div>
 
       {/* Profile Details */}
-      <div className="lg:ml-[223px] lg:mt-[30px] flex items-start justify-start">
-        <div className="flex flex-col pt-[45px] lg:pt-0 gap-2 ml-[13px] lg:ml-0">
-          <div className="w-full text-gray-900 dark:text-white-50 text-xl font-bold">{fullName}</div>
-          <div className="w-full text-gray-400 text-sm font-normal">{`@${username}`}</div>
+      <div className="flex items-start justify-start lg:ml-[223px] lg:mt-[30px]">
+        <div className="ml-[13px] flex flex-col gap-2 pt-[45px] lg:ml-0 lg:pt-0">
+          <div className="w-full text-xl font-bold text-gray-900 dark:text-white-50">{fullName}</div>
+          <div className="w-full text-sm font-normal text-gray-400">{`@${username}`}</div>
         </div>
       </div>
 
       {/* Edit Button */}
-      <div className="absolute right-[13px] bottom-5 lg:right-[50px] lg:bottom-[42px]">
+      <div className="absolute bottom-5 right-[13px] lg:bottom-[42px] lg:right-[50px]">
         <div className="flex items-center justify-center gap-3">
           <AdminViewButton role={role} />
           <UserProfileDialog />

@@ -2,7 +2,7 @@
 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Loader2, Trash2 } from "lucide-react";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { getResourceType, showToast } from "@/lib/utils";
 import { Booking, Car, User } from "@prisma/client";
 
@@ -52,7 +52,7 @@ const AdminDeleteDialog = ({ resource, url }: AdminDeleteDialogProps) => {
       <AlertDialogTrigger asChild>
         <Trash2 />
       </AlertDialogTrigger>
-      <AlertDialogContent className="bg-gray-50 dark:bg-gray-850 dark:text-white-200 text-gray-500 dark:border-gray-600">
+      <AlertDialogContent className="bg-gray-50 text-gray-500 dark:border-gray-600 dark:bg-gray-850 dark:text-white-200">
         <AlertDialogHeader>
           <AlertDialogTitle className="mb-3">Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
@@ -62,7 +62,7 @@ const AdminDeleteDialog = ({ resource, url }: AdminDeleteDialogProps) => {
           <AlertDialogAction onClick={handleDelete} className="text-white-50">
             {isLoading ? (
               <div className="flex">
-                <Loader2 className="animate-spin mr-2" />
+                <Loader2 className="mr-2 animate-spin" />
                 Processing...
               </div>
             ) : (

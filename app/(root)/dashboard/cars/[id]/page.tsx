@@ -1,5 +1,4 @@
 import { getCarById } from "@/lib/actions/car.action";
-import Image from "next/image";
 import UpdateCarForm from "@/components/Dashboard/UpdateCarForm";
 
 type ShowCarPageParams = {
@@ -17,13 +16,13 @@ const ShowCarPage = async ({ params }: ShowCarPageParams) => {
   }
 
   return (
-    <div className="flex gap-12 mt-5">
-      <div className="w-1/3 bg-gray-200 p-5 rounded-lg font-bold text-gray-500 h-auto flex flex-col items-center justify-center">
+    <div className="mt-5 flex gap-12">
+      <div className="flex h-auto w-1/3 flex-col items-center justify-center rounded-lg bg-gray-200 p-5 font-bold text-gray-500">
         {/* Car Image  */}
-        <div className="w-full h-72 relative rounded-lg overflow-hidden mb-5 flex justify-center items-center">{/* <Image src={car.images[0] || "/images/default-car.png"} width={250} height={250} alt="car-picture" className="rounded-full" /> */}</div>
+        <div className="relative mb-5 flex h-72 w-full items-center justify-center overflow-hidden rounded-lg">{/* <Image src={car.images[0] || "/images/default-car.png"} width={250} height={250} alt="car-picture" className="rounded-full" /> */}</div>
         <div>{car.title}</div>
       </div>
-      <div className="w-2/3 bg-gray-200 p-5 rounded-lg">
+      <div className="w-2/3 rounded-lg bg-gray-200 p-5">
         <UpdateCarForm car={car} />
       </div>
     </div>

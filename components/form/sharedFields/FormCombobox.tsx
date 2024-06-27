@@ -34,7 +34,7 @@ const FormCombobox = ({ form, name, label, labelClassName, placeholder, constant
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="w-[350px] p-0 dark:bg-gray-800 dark:border-none bg-white-50">
+            <PopoverContent className="w-[350px] bg-white-50 p-0 dark:border-none dark:bg-gray-800">
               <Command>
                 <CommandInput placeholder={placeholder} className="dark:text-white-50" />
                 <CommandEmpty>
@@ -49,7 +49,7 @@ const FormCombobox = ({ form, name, label, labelClassName, placeholder, constant
                       onSelect={() => {
                         form.setValue(name, car.value);
                       }}
-                      className="hover:underline hover:decoration-black dark:hover:decoration-white-50 hover:underline-offset-4 cursor-pointer dark:text-white-50"
+                      className="cursor-pointer hover:underline hover:decoration-black hover:underline-offset-4 dark:text-white-50 dark:hover:decoration-white-50"
                     >
                       <Check className={cn("mr-2 h-4 w-4 text-primary dark:text-white-50 ", car.value === field.value ? "opacity-100" : "opacity-0")} />
                       {car.label}

@@ -9,12 +9,7 @@ interface CarMetricsProps {
   extraClasses?: string;
 }
 
-export const CarMetrics = ({
-  car,
-  smallScreen,
-  classes,
-  extraClasses,
-}: CarMetricsProps) => {
+export const CarMetrics = ({ car, smallScreen, classes, extraClasses }: CarMetricsProps) => {
   const metrics = [
     {
       id: 1,
@@ -35,29 +30,9 @@ export const CarMetrics = ({
     <div className={classes}>
       {metrics.map((metric) => (
         <div key={metric.id} className="flex items-center gap-1">
-          {metric.alt === "transmission-icon" ? (
-            <TransmissionIcon
-              width={smallScreen ? 14 : 24}
-              height={smallScreen ? 14 : 24}
-              alt={metric.alt}
-              extraClasses={extraClasses}
-            />
-          ) : (
-            <Image
-              src={metric.src}
-              width={smallScreen ? 14 : 24}
-              height={smallScreen ? 14 : 24}
-              alt={metric.alt}
-            />
-          )}
+          {metric.alt === "transmission-icon" ? <TransmissionIcon width={smallScreen ? 14 : 24} height={smallScreen ? 14 : 24} alt={metric.alt} extraClasses={extraClasses} /> : <Image src={metric.src} width={smallScreen ? 14 : 24} height={smallScreen ? 14 : 24} alt={metric.alt} />}
 
-          <p
-            className={`text-[${
-              smallScreen ? "12px" : "14px"
-            }] sm:body-regular text-gray-400`}
-          >
-            {metric.text}
-          </p>
+          <p className={`${smallScreen ? "text-[12px]" : "text-[14px]"} sm:body-regular text-gray-400`}>{metric.text}</p>
         </div>
       ))}
     </div>

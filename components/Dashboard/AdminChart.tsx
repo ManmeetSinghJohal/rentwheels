@@ -41,7 +41,7 @@ const AdminChart = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center p-5 mt-5 mx-5 dark:bg-gray-850 bg-white-50 dark:text-white-50 text-gray-700 rounded-lg">
+    <div className="mx-5 mt-5 flex items-center justify-center rounded-lg bg-white-50 p-5 text-gray-700 dark:bg-gray-850 dark:text-white-50">
       <Bar data={chartData} options={chartOptions} />
     </div>
   );

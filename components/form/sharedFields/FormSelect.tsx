@@ -48,9 +48,9 @@ const FormSelect = ({ form, name, label, placeholder, constant, labelClassName, 
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
-            <SelectContent className="bg-white-50 dark:bg-gray-800 dark:text-white-50 border-none">
+            <SelectContent className="border-none bg-white-50 dark:bg-gray-800 dark:text-white-50">
               {options.map((option) => (
-                <SelectItem key={option.value} value={option.value} className="hover:underline hover:decoration-black dark:hover:decoration-white-50 hover:underline-offset-4 cursor-pointer">
+                <SelectItem key={option.value} value={option.value} className="cursor-pointer hover:underline hover:decoration-black hover:underline-offset-4 dark:hover:decoration-white-50">
                   {option.label}
                 </SelectItem>
               ))}

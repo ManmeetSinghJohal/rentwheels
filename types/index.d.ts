@@ -1,19 +1,20 @@
+import React from "react";
 import { Car, Booking, User, Role } from "@prisma/client";
 
-type StyleField = string | CSSProperties | ((args: CallbackArguments) => string | CSSProperties);
+// type StyleField = string | CSSProperties | ((args: CallbackArguments) => string | CSSProperties);
 
-type SearchParamProps = {
+export type SearchParamProps = {
   params?: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-type UrlQueryParams = {
+export type UrlQueryParams = {
   params: string;
   key: string;
   value: string | null;
 };
 
-type RemoveUrlQueryParams = {
+export type RemoveUrlQueryParams = {
   params: string;
   keysToRemove: string[];
 };
@@ -48,10 +49,10 @@ export interface CarProps {
   images: string[];
   ownerId: string;
   address: string;
-  pickUpDate: pickUpDate;
-  pickUpTime: pickUpTime;
-  dropOffDate: dropOffDate;
-  dropOffTime: dropOffTime;
+  // pickUpDate: pickUpDate;
+  // pickUpTime: pickUpTime;
+  // dropOffDate: dropOffDate;
+  // dropOffTime: dropOffTime;
 }
 
 export type MyCarsProps = {
@@ -117,9 +118,9 @@ export type CarWithOwner = Car & {
   owner: User;
 };
 
-export type BookingTableProps = {
-  query?: string;
-};
+// export type BookingTableProps = {
+//   query?: string;
+// };
 
 export type DeleteClerkUserParams = {
   clerkId: string | null;

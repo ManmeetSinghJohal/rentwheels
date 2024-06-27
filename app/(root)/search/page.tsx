@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   description: "Search for your next car on RentWheels",
 };
 
-
 const Search = async ({ searchParams }: { searchParams: { capacity: string; page: string; rentPrice: string; type: string[] } }) => {
   const currentPage = Number(searchParams.page as string) || 1;
 
@@ -21,17 +20,17 @@ const Search = async ({ searchParams }: { searchParams: { capacity: string; page
     perPage: 10,
     page: currentPage,
   });
-  if(!cars) return null
+  if (!cars) return null;
   const totalNumberOfPosts = cars.totalCarsCount;
   const totalNumberOfPages = Math.ceil(totalNumberOfPosts / 10);
 
   return (
     <div className="max-w-[1440px] lg:grid lg:grid-cols-[1fr_2fr] lg:gap-6">
       <Filter searchParams={searchParams} />
-      <div className="lg:pt-6 mt-6">
+      <div className="mt-6 lg:pt-6">
         <SearchInputs />
         <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {cars.cars.map((car, i) => (
               <CarCard key={i} car={car} />
             ))}

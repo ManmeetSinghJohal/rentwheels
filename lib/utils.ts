@@ -58,7 +58,7 @@ export const showToast = (title: string, description: string) => {
 };
 
 export const debounce = (func: (...args: any[]) => void, wait: number) => {
-  let timeout: NodeJS.Timeout | null;
+  let timeout: any | null;
   return (...args: any[]) => {
     if (timeout) {
       clearTimeout(timeout);

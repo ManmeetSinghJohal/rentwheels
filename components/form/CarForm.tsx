@@ -38,6 +38,7 @@ const AddCarForm = () => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFiles(acceptedFiles);
     handleImageUploadForDropzone(acceptedFiles[0]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleImageUploadForDropzone = (file: File) => {
@@ -121,7 +122,7 @@ const AddCarForm = () => {
           fuelCapacity: Number(values.fuelCapacity),
           description: values.description,
           images: values.imgUrl,
-          blurDataURL: blurDataURL,
+          blurDataURL,
           userId: userIdString,
         };
         addCar(carData);
@@ -143,15 +144,15 @@ const AddCarForm = () => {
   };
 
   return (
-    <div className="w-full px-6 py-10 dark:bg-gray-850 rounded-[10px]">
-      <h1 className="font-plusJakartaSans font-bold text-[20px] text-gray-900 dark:text-white-50">Add a Car for Rent</h1>
-      <p className="mt-[10px] text-gray-400 font-plusJakartaSans text-[14px] font-medium">Please enter your car info</p>
+    <div className="w-full rounded-[10px] px-6 py-10 dark:bg-gray-850">
+      <h1 className="font-plusJakartaSans text-[20px] font-bold text-gray-900 dark:text-white-50">Add a Car for Rent</h1>
+      <p className="mt-[10px] font-plusJakartaSans text-[14px] font-medium text-gray-400">Please enter your car info</p>
       <div className="mt-[34px] space-y-8">
-        <h1 className="text-primary font-plusJakartaSans font-extrabold text-[18px]">CAR INFO</h1>
+        <h1 className="font-plusJakartaSans text-[18px] font-extrabold text-primary">CAR INFO</h1>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full">
-            <div className=" sm:grid sm:grid-cols-2 sm:gap-8 space-y-4 sm:space-y-0 ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+            <div className=" space-y-4 sm:grid sm:grid-cols-2 sm:gap-8 sm:space-y-0 ">
               <FormInput form={form} name="title" label="Car Model" labelClassName="font-bold text-[14px] sm:text-[16px]" placeholder="Enter your car model" />
               <FormCombobox form={form} name="type" label="Car Type" labelClassName="font-bold text-[14px] sm:text-[16px]" placeholder="Search by Type" constant={carTypes} />
               <FormInput form={form} name="price" label="Rent Price" labelClassName="font-bold text-[14px] sm:text-[16px]" placeholder="Price in dollar" />
@@ -167,20 +168,20 @@ const AddCarForm = () => {
               name="imgUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-plusJakartaSans font-bold text-[16px] dark:text-white-50">Upload Images</FormLabel>
+                  <FormLabel className="font-plusJakartaSans text-[16px] font-bold dark:text-white-50">Upload Images</FormLabel>
                   <FormControl>
                     <>
                       <Input {...getInputProps()} type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, field.onChange)} ref={fileInputRef} />
-                      <div {...getRootProps()} className="border-dashed dark:border-gray-400 rounded-md border-2 h-[327px] flex flex-col gap-4 items-center justify-center cursor-pointer">
+                      <div {...getRootProps()} className="flex h-[327px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md border-2 border-dashed dark:border-gray-400">
                         {isUploaded ? (
                           <Image src={field.value} alt="Uploaded image" width={300} height={200} objectFit="contain" />
                         ) : (
                           <div className="flex flex-col items-center">
                             <Image src="/assets/icons/Upload.svg" alt="upload icon" width={30} height={30} />
-                            <h1 className="font-plusJakartaSans font-medium text-[14px] dark:text-gray-400">
-                              Drag and drop images, or <span className="text-primary font-semibold">Browse</span>
+                            <h1 className="font-plusJakartaSans text-[14px] font-medium dark:text-gray-400">
+                              Drag and drop images, or <span className="font-semibold text-primary">Browse</span>
                             </h1>
-                            <p className="font-plusJakartaSans font-normal text-[12px] text-gray-400 dark:text-white-100">High resolution images (png, jpg, gif)</p>
+                            <p className="font-plusJakartaSans text-[12px] font-normal text-gray-400 dark:text-white-100">High resolution images (png, jpg, gif)</p>
                           </div>
                         )}
                       </div>
@@ -191,10 +192,10 @@ const AddCarForm = () => {
               )}
             />
             <div className="flex sm:justify-end">
-              <Button className="sm:w-[148px] h-[56px] w-full sm:px-5 text-white-50 font-bold font-plusJakartaSans text-[16px] rounded-[10px]" type="submit">
+              <Button className="h-[56px] w-full rounded-[10px] font-plusJakartaSans text-[16px] font-bold text-white-50 sm:w-[148px] sm:px-5" type="submit">
                 {isLoading ? (
                   <div className="flex">
-                    <Loader2 className="animate-spin mr-2" />
+                    <Loader2 className="mr-2 animate-spin" />
                     Uploading...
                   </div>
                 ) : (

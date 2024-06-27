@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import React from "react";
+import { Inter} from "next/font/google";
 import { cookies } from "next/headers";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -15,9 +16,6 @@ import { ourFileRouter } from "./api/uploadthing/core";
 import { elements } from "@/styles/clerkPopoverStyle";
 
 const inter = Inter({ subsets: ["latin"] });
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cohort6-phoenix-car-rent.vercel.app"),
@@ -60,17 +58,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           socialButtonsPlacement: "bottom",
           socialButtonsVariant: "iconButton",
         },
-        elements: elements,
+        elements,
       }}
     >
       <ThemeProvider theme={theme}>
         <html lang="en">
-          <body className={`${inter.className} ${plusJakartaSans.className}`}>
+          <body className={`${inter.className}`}>
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-            <main className="dark:bg-gray-900 select-none">
+            <main className="select-none dark:bg-gray-900">
               <Navbar />
-              <div className="max-w-[1440px] mx-auto">
-                <div className="min-h-screen px-6 md:px-0 bg-white-200 dark:bg-gray-900">{children}</div>
+              <div className="mx-auto max-w-[1440px]">
+                <div className="min-h-screen bg-white-200 px-6 dark:bg-gray-900 md:px-0">{children}</div>
                 <Toaster />
                 <Footer />
               </div>

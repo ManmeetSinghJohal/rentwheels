@@ -39,8 +39,8 @@ const FormCalendar = ({ form, name, label, placeholder }: any) => {
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex flex-col w-1/2">
-          <FormLabel className="flex gap-2 font-plusJakartaSans text-[14px] sm:text-[16px] font-semibold leading-normal text-gray-900 dark:text-white-50">
+        <FormItem className="flex w-1/2 flex-col">
+          <FormLabel className="flex gap-2 font-plusJakartaSans text-[14px] font-semibold leading-normal text-gray-900 dark:text-white-50 sm:text-[16px]">
             <Image src="/icons/calendar.svg" width={16} height={16} alt="Calendar" />
             {label}
           </FormLabel>
@@ -52,15 +52,15 @@ const FormCalendar = ({ form, name, label, placeholder }: any) => {
                     format(field.value, "dd/MM/yyyy")
                   ) : (
                     <>
-                      <span className=" font-normal font-plusJakartaSans !text-gray-400">{placeholder}</span>
+                      <span className=" font-plusJakartaSans font-normal !text-gray-400">{placeholder}</span>
                       <Image src="/icons/arrow-down.svg" alt="arrow-down" width={12} height={12} />
                     </>
                   )}
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 bg-white-50 z-10 rounded-md" align="start">
-              <Calendar mode="single" className="dark:bg-gray-800 rounded-md text-white-50" classNames={customCalendarClassNames} selected={field.value} onSelect={field.onChange} disabled={(date) => date < new Date()} initialFocus />
+            <PopoverContent className="z-10 w-auto rounded-md bg-white-50 p-0" align="start">
+              <Calendar mode="single" className="rounded-md text-white-50 dark:bg-gray-800" classNames={customCalendarClassNames} selected={field.value} onSelect={field.onChange} disabled={(date) => date < new Date()} initialFocus />
             </PopoverContent>
           </Popover>
 
