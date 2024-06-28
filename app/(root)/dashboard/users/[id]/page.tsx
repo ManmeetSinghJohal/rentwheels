@@ -1,4 +1,4 @@
-import { getUserById } from "@/lib/actions/user.action";
+import { getUserById } from "@/lib/actions/userActions";
 import Image from "next/image";
 import UpdateUserForm from "@/components/Dashboard/UpdateUserForm";
 
