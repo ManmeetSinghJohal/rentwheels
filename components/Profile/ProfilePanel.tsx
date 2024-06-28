@@ -7,7 +7,7 @@ import { useUser } from "@clerk/nextjs";
 
 import UserProfileDialog from "./UserProfileDialog";
 import CoverImageDialog from "./CoverImageDialog";
-import { getUserById } from "@/lib/actions/user.action";
+import { getUserById } from "@/lib/actions/userActions";
 import AdminViewButton from "./AdminViewButton";
 
 const ProfilePanel = () => {
@@ -30,7 +30,7 @@ const ProfilePanel = () => {
     };
 
     fetchUserData();
-  },);
+  });
 
   const updateCoverImage = (newCoverImageUrl: string) => {
     setCoverImage(newCoverImageUrl);

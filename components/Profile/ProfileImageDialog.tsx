@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { isBased64Image, showToast, handleImageUpload } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { useUser } from "@clerk/nextjs";
-import { updateUserProfileImg } from "@/lib/actions/user.action";
+import { updateUserProfileImg } from "@/lib/actions/userActions";
 
 type ProfileImageDialogProps = {
   open?: boolean;

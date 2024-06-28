@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import Pagination from "@/components/Dashboard/Pagination";
-import { getAllUsers, searchUsers } from "@/lib/actions/user.action";
+import { getAllUsers, searchUsers } from "@/lib/actions/userActions";
 import { Button } from "@/components/ui/button";
 import AdminSearch from "@/components/Dashboard/AdminSearch";
 import UserTable from "@/components/Dashboard/UserTable";
