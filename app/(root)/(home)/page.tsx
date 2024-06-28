@@ -17,8 +17,8 @@ const Home = async ({ searchParams }: any) => {
   const user = await currentUser();
   let cars: CarWithFavorite[] = [];
 
-  if (user?.publicMetadata.userId) {
-    const userId = Number(user.publicMetadata.userId);
+  if (user) {
+    const userId = Number(user?.id);
 
     cars = await getAllCarsWithFavorites(userId);
   } else {
