@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import "@uploadthing/react/styles.css";
+import Head from "next/head";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -18,7 +19,7 @@ import { elements } from "@/styles/clerkPopoverStyle";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cohort6-phoenix-car-rent.vercel.app"),
+  metadataBase: new URL("https://rentwheels-jade.vercel.app"),
   title: {
     template: "%s | RentWheels",
     default: "RentWheels",
@@ -30,8 +31,8 @@ export const metadata: Metadata = {
     title: "RentWheels",
     description: "Find your next car with RentWheels, the best platform for renting cars online.",
     type: "website",
-    url: "https://cohort6-phoenix-car-rent.vercel.app/",
-    images: ["https://cohort6-phoenix-car-rent.vercel.app/images/Ads1.jpg", "https://cohort6-phoenix-car-rent.vercel.app/images/Ads2.jpg", "https://cohort6-phoenix-car-rent.vercel.app/images/rent-wheels-logo.jpg"],
+    url: "https://rentwheels-jade.vercel.app",
+    images: ["https://rentwheels-jade.vercel.app/images/Ads1.jpg", "https://rentwheels-jade.vercel.app/images/Ads2.jpg", "https://rentwheels-jade.vercel.app/images/rent-wheels-logo.jpg"],
     siteName: "RentWheels",
   },
   robots: {
@@ -63,6 +64,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <ThemeProvider theme={theme}>
         <html lang="en">
+          <Head>
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+            <link rel="manifest" href="/site.webmanifest" />
+          </Head>
           <body className={`${inter.className}`}>
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
             <main className="select-none dark:bg-gray-900">
